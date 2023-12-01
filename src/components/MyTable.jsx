@@ -12,7 +12,7 @@ const MyTable = ({ tableInfo, domain }) => {
     <>
       <Paper
         style={{ marginTop: "50px", padding: "16px", position: "relative" }}
-        elevation={2}
+        elevation={1}
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h7" gutterBottom color="primary">
