@@ -8,18 +8,20 @@ import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 
 const MyTable = ({ tableInfo, domain }) => {
-  const msg = `We have found ${
-    Object.keys(tableInfo).length
-  } advertisers in the ad.txt file of ${domain}`;
   return (
     <>
       <Paper
         style={{ marginTop: "50px", padding: "16px", position: "relative" }}
         elevation={2}
       >
-        <Typography variant="h6" gutterBottom color="primary">
-          {msg}
-        </Typography>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h7" gutterBottom color="primary">
+            {`Domain: ${domain}`}
+          </Typography>
+          <Typography variant="h7" gutterBottom color="primary">
+            {`Total advertisers: ${Object.keys(tableInfo).length}`}
+          </Typography>
+        </div>
       </Paper>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -40,7 +40,9 @@ function App() {
   };
 
   return (
-    <>
+    <div
+      style={{ padding: "20px", minHeight: "100vh", boxSizing: "border-box" }}
+    >
       <div>
         <Typography
           variant="h3"
@@ -59,7 +61,7 @@ function App() {
         {isLoading && <CircularProgress />}
         {info && <MyTable tableInfo={info} domain={domainName} />}
       </div>
-    </>
+    </div>
   );
 }
 

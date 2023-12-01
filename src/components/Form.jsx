@@ -11,15 +11,23 @@ const Form = ({ onFormSubmit }) => {
   };
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
+      <form
+        onSubmit={handleFormSubmit}
+        style={{ display: "flex", alignItems: "center", gap: "10px" }}
+      >
         <TextField
           label="Enter a domain"
           inputRef={domainRef}
           variant="standard"
           margin="normal"
-          style={{ width: "90%" }}
+          style={{ width: "90%", flexGrow: 1 }}
         />
-        <Fab type="submit" variant="extended" color="primary">
+        <Fab
+          type="submit"
+          variant="extended"
+          color="primary"
+          style={{ whiteSpace: "nowrap", padding: "10px 30px" }}
+        >
           Parse Ads.txt
         </Fab>
       </form>
