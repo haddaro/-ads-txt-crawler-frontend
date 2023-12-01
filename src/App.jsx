@@ -8,6 +8,7 @@ const URL = "https://ads-txt-crawler-backend.onrender.com/advertisers?domain=";
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [info, setInfo] = useState(null);
+  const [domainName, setDomainName] = useState(null);
 
   const getData = async (domain) => {
     setIsLoading(true);
@@ -32,6 +33,7 @@ function App() {
     try {
       const ans = await getData(domain);
       setInfo(ans);
+      setDomainName(domain);
     } catch (error) {
       setInfo({ error: 0 });
     }
@@ -55,7 +57,7 @@ function App() {
       </div>
       <div>
         {isLoading && <CircularProgress />}
-        {info && <MyTable tableInfo={info} />}
+        {info && <MyTable tableInfo={info} domain={domainName} />}
       </div>
     </>
   );
