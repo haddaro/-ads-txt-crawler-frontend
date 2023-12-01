@@ -12,8 +12,10 @@ const MyTable = ({ tableInfo }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Domain</TableCell>
-            <TableCell align="right">Count</TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>Domain</TableCell>
+            <TableCell style={{ fontWeight: "bold" }} align="right">
+              Count
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

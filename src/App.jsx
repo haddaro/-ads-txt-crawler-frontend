@@ -3,15 +3,38 @@ import { Typography, CircularProgress } from "@mui/material";
 import Form from "./components/Form";
 import MyTable from "./components/MyTable";
 
+const URL = "https://ads-txt-crawler-backend.onrender.com/advertisers?domain=";
+
 function App() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [info, setInfo] = useState(null);
 
+  const getData = async (domain) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${URL}${domain}`);
+      if (!response.ok) {
+        throw new Error("Could not read from url");
+      }
+      const fetchedData = await response.json();
+      console.log(fetchedData.data);
+      if (fetchedData.status != "success")
+        throw new Error("Could not read data");
+      return fetchedData.data;
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async (domain) => {
-    setIsSubmitted(true);
-    const ans = { [domain]: 2, hello: 3 };
-    setInfo(ans);
+    try {
+      const ans = await getData(domain);
+      setInfo(ans);
+    } catch (error) {
+      setInfo({ error: 0 });
+    }
   };
 
   return (
@@ -32,7 +55,7 @@ function App() {
       </div>
       <div>
         {isLoading && <CircularProgress />}
-        {isSubmitted && <MyTable tableInfo={info} />}
+        {info && <MyTable tableInfo={info} />}
       </div>
     </>
   );
