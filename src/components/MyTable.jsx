@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 
-const MyTable = ({ tableInfo, domain }) => {
+const MyTable = ({ tableInfo, domain, time }) => {
   return (
     <>
       <Paper
@@ -17,6 +17,9 @@ const MyTable = ({ tableInfo, domain }) => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h7" gutterBottom color="primary">
             {`Domain: ${domain}`}
+          </Typography>
+          <Typography variant="h7" gutterBottom color="primary">
+            {`Parse time: ${time}ms`}
           </Typography>
           <Typography variant="h7" gutterBottom color="primary">
             {`Total advertisers: ${Object.keys(tableInfo).length}`}

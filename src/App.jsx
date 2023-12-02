@@ -10,6 +10,7 @@ function App() {
   const [info, setInfo] = useState(null);
   const [domainName, setDomainName] = useState(null);
   const [isError, setIsError] = useState(false);
+  const [responseTime, setResponseTime] = useState(0);
 
   const getData = async (domain) => {
     setIsLoading(true);
@@ -20,11 +21,11 @@ function App() {
         throw new Error("Could not read from url");
       }
       const fetchedData = await response.json();
-      console.log(fetchedData.data);
       if (fetchedData.status != "success") {
         setIsError(true);
         throw new Error("Could not read data");
       }
+      setResponseTime(fetchedData.duration);
       return fetchedData.data;
     } catch (error) {
       setIsError(true);
@@ -34,6 +35,7 @@ function App() {
   };
 
   const handleSubmit = async (domain) => {
+    setResponseTime(0);
     setIsError(false);
     try {
       const ans = await getData(domain);
@@ -75,7 +77,9 @@ function App() {
             Something went wrong
           </Typography>
         )}
-        {info && <MyTable tableInfo={info} domain={domainName} />}
+        {info && (
+          <MyTable tableInfo={info} domain={domainName} time={responseTime} />
+        )}
       </div>
     </div>
   );
