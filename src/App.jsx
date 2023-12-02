@@ -8,7 +8,6 @@ const URL = "https://ads-txt-crawler-backend.onrender.com/advertisers?domain=";
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [info, setInfo] = useState(null);
-  const [domainName, setDomainName] = useState(null);
   const [domainDisplay, setDomainDisplay] = useState(null);
   const [isError, setIsError] = useState(false);
   const [responseTime, setResponseTime] = useState(0);
@@ -42,7 +41,6 @@ function App() {
     try {
       const ans = await getData(domain);
       setInfo(ans);
-      setDomainName(domain);
     } catch (error) {
       setIsError(true);
     }
