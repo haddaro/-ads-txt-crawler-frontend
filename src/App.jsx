@@ -9,6 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [info, setInfo] = useState(null);
   const [domainName, setDomainName] = useState(null);
+  const [domainDisplay, setDomainDisplay] = useState(null);
   const [isError, setIsError] = useState(false);
   const [responseTime, setResponseTime] = useState(0);
 
@@ -26,6 +27,7 @@ function App() {
         throw new Error("Could not read data");
       }
       setResponseTime(fetchedData.duration);
+      setDomainDisplay(fetchedData.domain);
       return fetchedData.data;
     } catch (error) {
       setIsError(true);
@@ -78,7 +80,11 @@ function App() {
           </Typography>
         )}
         {info && (
-          <MyTable tableInfo={info} domain={domainName} time={responseTime} />
+          <MyTable
+            tableInfo={info}
+            domain={domainDisplay}
+            time={responseTime}
+          />
         )}
       </div>
     </div>
