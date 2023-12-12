@@ -1,3 +1,6 @@
+/* Front-end for a web-app app that reads ads.txt files from websites
+and displays the advertiser's names and frequencies.
+*/
 import { useState } from "react";
 import { Typography, CircularProgress } from "@mui/material";
 import Form from "./components/Form";
